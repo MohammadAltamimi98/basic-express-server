@@ -1,33 +1,32 @@
 'use strict';
+
 const express = require('express');
+const app = express();
+app.use(express.json());
+
+
 const notFoundHandler = require('./error-handlers/404');
 const errorHandler = require('./error-handlers/500');
 const logger = require('./middleware/logger');
 const validator = require('./middleware/validator');
 
-const app = express();
-
-app.use(express.json());
 
 app.use(logger);
-app.use(validator);
+// app.use(validator);
 
 
 app.get('/', (req, res) => {
-  res.status(200).send('This server works.');
+  res.send('Hello From mohammad.');
 });
-
 
 
 app.get('/person', validator, (req, res) => {
-  const { name } = req.query;
-  res.status(200).send({ name: name });
+  const output = {
+    name: req.query.name,
+  };
+  res.json({ output });
 });
 
-
-app.get('/bad', (req, res) => {
-  throw new Error('Error');
-});
 
 
 app.use('*', notFoundHandler);
@@ -35,13 +34,14 @@ app.use(errorHandler);
 
 
 
+// start function
+function start(port) {
+  app.listen(port, () => {
+    console.log(`app is listening on the port ${port}`);
+  });
+}
 
 module.exports = {
-  start: (port) => {
-    {
-      app.listen(port, () => {
-        console.log(`listening on port ${port}`);
-      });
-    }
-  },
+  app: app,
+  start: start,
 };

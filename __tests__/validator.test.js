@@ -25,6 +25,6 @@ describe('validator', () => {
     let res = {};
     let next = jest.fn();
     validator(req, res, next);
-    expect(next).toHaveBeenCalledWith('Query Name is not valid.');
+    expect(next).toHaveBeenCalledWith('Invalid query.');
   });
 });

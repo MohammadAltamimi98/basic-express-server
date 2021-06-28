@@ -7,23 +7,25 @@ describe('logger middleware', () => {
   const res = {};
   const next = jest.fn();
 
-  beforeEach (() => {
-    consoleSpy = jest.spyOn (console, 'log').mockImplementation();
+  beforeEach(() => {
+    consoleSpy = jest.spyOn(console, 'log').mockImplementation();
   });
 
-  afterEach (() => {
+  afterEach(() => {
     consoleSpy.mockRestore();
   });
 
-  it ('Logs  the output correctly', () => {
-    loggerMiddleware (req,res,next);
+  it('Logs  the output correctly', () => {
+    loggerMiddleware(req, res, next);
     expect(consoleSpy).toHaveBeenCalled();
   });
 
-  it ('Moves to the next Middleware', () => {
-    loggerMiddleware (req,res,next);
+  it('Moves to the next Middleware', () => {
+    loggerMiddleware(req, res, next);
     expect(next).toHaveBeenCalled();
   });
 
 
 });
+
+
