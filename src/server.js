@@ -2,18 +2,21 @@
 const express = require('express');
 const notFoundHandler = require('./error-handlers/404');
 const errorHandler = require('./error-handlers/500');
+const logger = require('./middleware/logger');
+const validator = require('../src/middleware/validator');
 
 const app = express();
 
-const logger = require('./middleware/logger');
+
 
 app.use(logger);
+app.use(validator);
 
 
 app.get('/', (req, res) => {
   res.send('This server works.');
 });
-
+ 
 
 app.get('/person', (req, res) => {
   const output = {
