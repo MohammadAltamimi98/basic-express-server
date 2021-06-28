@@ -24,7 +24,7 @@ app.get('/person', validator, (req, res) => {
   const output = {
     name: req.query.name,
   };
-  res.json({ output });
+  res.json(output);
 });
 
 

@@ -24,6 +24,7 @@ describe('API server', () => {
   it('200 string in the query', async () => {
     let route = '/person?name=mohammad';
     const response = await mockRequest.get(route);
+    console.log(response.text, response);
     let parsedData = JSON.parse(response.text);
     expect(response.status).toBe(200);
     expect(parsedData).toEqual({
