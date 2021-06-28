@@ -15,12 +15,12 @@ describe('logger middleware', () => {
     consoleSpy.mockRestore();
   });
 
-  it ('logs output correctly', () => {
+  it ('Logs  the output correctly', () => {
     loggerMiddleware (req,res,next);
     expect(consoleSpy).toHaveBeenCalled();
   });
 
-  it ('Moves To next Middleware', () => {
+  it ('Moves to the next Middleware', () => {
     loggerMiddleware (req,res,next);
     expect(next).toHaveBeenCalled();
   });

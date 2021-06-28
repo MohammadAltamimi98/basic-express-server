@@ -2,6 +2,8 @@
 
 const validator = require('../src/middleware/validator');
 
+
+
 describe('validator', () => {
   it('returning query name', () => {
     let req = {
