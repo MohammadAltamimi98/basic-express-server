@@ -7,26 +7,25 @@ const validator = require('./middleware/validator');
 
 const app = express();
 
-
+app.use(express.json());
 
 app.use(logger);
 app.use(validator);
 
 
 app.get('/', (req, res) => {
-  res.send('This server works.');
-});
- 
-
-app.get('/person', (req, res) => {
-  const output = {
-    name: req.query.name,
-  };
-  res.json(output);
+  res.status(200).send('This server works.');
 });
 
 
-app.get('/bad',(req,res)=>{
+
+app.get('/person', validator, (req, res) => {
+  const { name } = req.query;
+  res.status(200).send({ name: name });
+});
+
+
+app.get('/bad', (req, res) => {
   throw new Error('Error');
 });
 
